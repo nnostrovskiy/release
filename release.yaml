@@ -1,0 +1,37 @@
+name: Build and Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Create extension package
+      run: |
+        mkdir -p dist
+        zip -r dist/extension.zip . -x "*.git*" "*.github*" "*.vscode*" "node_modules/*" "dist/*" ".eslintrc*" "*.md"
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: dist/extension.zip
+        body: |
+          Автоматически собранное расширение для Яндекс Поиска
+          
+          ### Изменения в этой версии:
+          ${{ github.event.head_commit.message }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
