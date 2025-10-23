@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Яндекс Поиск</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Яндекс Поиск</h1>
+            <div class="subtitle">Расширенный поиск с фильтрами</div>
+        </div>
+        
+        <div class="search-section">
+            <div class="input-group">
+                <label for="site">Домен сайта</label>
+                <input type="text" id="site" placeholder="example.com или https://site.com" autocomplete="off">
+                <div class="input-hint">Можно вводить с http://, https:// или www</div>
+            </div>
+            
+            <div class="input-group">
+                <label for="query">Ключевые слова</label>
+                <input type="text" id="query" placeholder="Введите поисковый запрос" autocomplete="off">
+            </div>
+            
+            <div class="preview-section">
+                <div class="preview-header">
+                    <span>Предпросмотр запроса</span>
+                    <div class="preview-actions">
+                        <button id="copy" class="icon-btn" title="Копировать ссылку">
+                            <span class="btn-icon">📋</span>
+                        </button>
+                        <button id="open" class="icon-btn" title="Открыть в Яндекс">
+                            <span class="btn-icon">🌐</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="preview" class="preview-box">
+                    <div class="preview-placeholder">Заполните поля выше для генерации ссылки</div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="save-preset" class="primary-btn">
+                    <span class="btn-icon">💾</span>
+                    Сохранить запрос
+                </button>
+            </div>
+        </div>
+        
+        <div class="presets-section">
+            <div class="section-header">
+                <h3>Сохраненные запросы</h3>
+                <div class="preset-actions">
+                    <button id="open-all" class="outline-btn small">
+                        <span class="btn-icon">🚀</span>
+                        Открыть все
+                    </button>
+                </div>
+            </div>
+            <div id="presets-list" class="presets-list">
+                <div class="empty-state">Нет сохраненных запросов</div>
+            </div>
+        </div>
+
+        <div class="update-section">
+            <div class="section-header">
+                <h3>Обновления</h3>
+                <button id="check-update" class="outline-btn small">
+                    <span class="btn-icon">🔄</span>
+                    Проверить
+                </button>
+            </div>
+            <div id="update-status" class="update-status">
+                <div class="update-info">
+                    <div class="version">Версия: 1.0.0</div>
+                    <div class="update-message">Проверяем обновления...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
